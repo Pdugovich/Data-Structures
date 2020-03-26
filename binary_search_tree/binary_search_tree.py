@@ -12,21 +12,83 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        pass
+        """
+        check if empty
+        if empty put node here/at root
+        else
+            if new < node.value
+                leftnode.insert value
+            if > =
+                rightnode.insert value
+        """
+        if value < self.value:
+            if self.left == None:
+                self.left = BinarySearchTree(value)
+            else:
+                self.left.insert(value)
+        elif value >= self.value:
+            if self.right == None:
+                self.right = BinarySearchTree(value)
+            else:
+                self.right.insert(value)
+        # elif value == self.value:
+        #     self.value = value
+
 
     # Return True if the tree contains the value
     # False if it does not
     def contains(self, target):
-        pass
+        """
+        if node is none
+            return false
+        if node.value == findvalue
+            return True
+        else
+            if find < node.value
+                find on left node
+            else
+                find on right node
+        """
+        # if self.value == None:
+        #     return False
+        if target == self.value:
+            return True
+        else:
+            if target < self.value:
+                if self.left == None:
+                    return False
+                else:
+                    return self.left.contains(target)
+            elif target > self.value:
+                if self.right == None:
+                    return False
+                else:
+                    return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
-        pass
+        """
+        if there's a right
+            get max on right
+        else
+            return node.value
+        """
+        if self.right != None:
+            return self.right.get_max()
+        else:
+            return self.value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
     def for_each(self, cb):
-        pass
+        cb(self.value)
+        if self.right !=None:
+            return self.right.for_each(cb)
+        elif self.left !=None:
+            return self.left.for_each(cb)
+        # else:
+        #    cb(self.value)
+        #    del self
 
     # DAY 2 Project -----------------------
 
